@@ -47,5 +47,15 @@ console.log(father2, Object.getOwnPropertyDescriptor(father2, "name"));
 son2.name = "li";
 
 // {} undefined
-// 使用存取描述符时，子类中自由属性表无法创建对应属性
+// 使用存取描述符时，直接修改子类中自由属性表无法创建对应属性
+console.log(son2, Object.getOwnPropertyDescriptor(son2, "name"));
+
+//{ name: 'li' } { value: 'li', writable: true, enumerable: true, configurable: false }
+// 但可以通过修改自由属性描述显式创建
+Object.defineProperty(son2, "name", {
+  value: "li",
+  writable: true,
+  enumerable: true,
+});
+
 console.log(son2, Object.getOwnPropertyDescriptor(son2, "name"));
