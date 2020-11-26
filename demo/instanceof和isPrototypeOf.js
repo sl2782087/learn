@@ -1,4 +1,12 @@
-// A instance B 检测 B.prototype 是否在A的原型链上(可以通过__proto__或Object.getPrototypeOf查询)
+/*
+ * @Author: wangzongyu
+ * @Date: 2020-11-22 16:41:58
+ * @LastEditors: wangzongyu
+ * @LastEditTime: 2020-11-26 21:22:47
+ * @Description: 
+ * @FilePath: \learn\demo\instanceof和isPrototypeOf.js
+ */
+// A instanceof B 检测 B.prototype 是否在A的原型链上(可以通过__proto__或Object.getPrototypeOf查询)
 //isPrototypeOf() 与 instanceof 运算符不同。在表达式 "object instanceof AFunction"中，object 的原型链是针对 AFunction.prototype 进行检查的，而不是针对 AFunction 本身。
 function Son() {}
 var s = new Son();
@@ -61,3 +69,16 @@ console.log(
   Parent4.prototype.isPrototypeOf(s4),
   Parent4.prototype.isPrototypeOf(Son4.prototype)
 );
+
+// 模拟instanceof
+
+const mockInstanceof = (l, r) => {
+  let proto = Object.getPrototypeOf(l);
+  while (proto) {
+    if (proto === r.prototype) {
+      return true;
+    } else {
+      proto = Object.getPrototypeOf(proto);
+    }
+  }
+};
