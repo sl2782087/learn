@@ -2,22 +2,22 @@
  * @Author: wangzongyu
  * @Date: 2020-11-25 16:43:29
  * @LastEditors: wangzongyu
- * @LastEditTime: 2020-11-25 19:38:14
+ * @LastEditTime: 2020-11-29 16:38:04
  * @Description:
  * @FilePath: \learn\demo\Promise.finally.js
  */
 
 // 原生已有 模拟实现
 
-// Promise.prototype.finally = function (onFinally) {
-//   return this.then(
-//     (res) => Promise.resolve(onFinally).then(() => res),
-//     (err) =>
-//       Promise.resolve(onFinally).then(() => {
-//         throw err;
-//       })
-//   );
-// };
+Promise.prototype.finally = function (onFinally) {
+  return this.then(
+    (res) => Promise.resolve(onFinally).then(() => res),
+    (err) =>
+      Promise.resolve(onFinally).then(() => {
+        throw err;
+      })
+  );
+};
 
 const PENDING = "pending";
 const FULFILLED = "fulfilled";
